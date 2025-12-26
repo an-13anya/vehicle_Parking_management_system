@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+     
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+   <link href="static/css/sty.css" rel="stylesheet">
+    <title>Admin Login Page</title>
+</head>
+<body  class="bg-image img-fluid" style=" height: 100%; margin: 0; padding: 0;
+background-image: url('static/assets/img/car1.jpg');
+ background-repeat: no-repeat;
+             background-size:cover ;
+             background-position:center ;
+             height: 100vh;
+             width: 100%;">
+     
+  <!-- Section: Design Block -->
+<section class="text-center"> 
+  <div class="p-5 " style=" height: 300px;">       
+   <h2 class="fw-bold mb-4 mt-3" style="color: rgba(240, 248, 255, 0.938);">Admin Log in Page</h2></div>
+  
+  <div class="card  mx-md-5 shadow-5-strong bg-black" style="
+        margin-top: -100px;
+        backdrop-filter: blur(30px);     
+        border-radius: 20px;
+        background: transparent;
+        border-color: rgb(37, 94, 128);
+        ">
+    <div class="card-body py-5 px-md-5">
+
+<div class="row d-flex justify-content-center">
+  <div class="col-lg-8">
+    <div><br></div>
+    <form method="post">
+     <!-- Email input -->
+       <div data-mdb-input-init class="form-outline mb-4">
+        <input type="text" id="form2Example1" class="form-control" name="username" style="border-radius:10px;"/>
+        <label class="form-label" for="form2Example1" style="font-weight: bold;
+        color: rgba(240, 248, 255, 0.938);">Username</label>
+        </div>
+
+       <!-- Password input -->
+       <div data-mdb-input-init class="form-outline mb-4">
+       <input type="password" id="form2Example2" class="form-control" name="password"style="border-radius:10px;" />
+        <label class="form-label" for="form2Example2" style="font-weight: bold;
+        color: rgba(240, 248, 255, 0.938);">Password</label>
+        </div>
+
+        {%  with messages=get_flashed_messages(with_categories=true) %}
+    {%  if messages %}
+      {% for category,message in messages %}
+   <div class="alert alert-{{ category }} alert-dismissible fade show"> {{ message }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+   </div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+            <!-- Submit button -->
+   <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-dark btn-block mb-4">
+    Log In
+    </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Section: Design Block -->
+</body>
+</html>

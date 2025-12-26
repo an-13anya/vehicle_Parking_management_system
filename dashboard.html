@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Vehicle Parking Manangement System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+     <link href="static/css/sty.css" rel="stylesheet">
+</head>
+  <body
+  class="bg-image img-fluid" style=" height: 100%; margin: 0; padding: 0;
+background-image: url('static/assets/img/car1.jpg');
+ background-repeat: no-repeat;
+             background-size:cover ;
+             background-position:center ;
+             height: 100vh;
+             width: 100%;">
+
+    <div class="container-fluid">
+        <div class="row">   
+     <!-- nav bar  -->
+  <ul class="nav nav-tabs bg-dark border-bottom border-body nav-fill fixed-top" id="myTab" role="tablist" data-bs-theme="dark" >
+
+   <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="Dashboard-tab" data-bs-toggle="tab" data-bs-target="#Dashboard-tab-pane" type="button" role="tab" aria-controls="Dashboard-tab-pane" aria-selected="false">DashBoard</button>
+  </li>
+    <li class="nav-item" role="presentation">
+    <button class="nav-link" id="Vehicle-Entry-tab" data-bs-toggle="tab" data-bs-target="#Vehicle-Entry-tab-pane" type="button" role="tab" aria-controls="Vehicle-Entry-tab-pane" aria-selected="true">Vehicle Entry</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="Vehicle-Exit-tab" data-bs-toggle="tab" data-bs-target="#Vehicle-Exit-tab-pane" type="button" role="tab" aria-controls="Vehicle-Exit-tab-pane" aria-selected="false">Vehicle Exit</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="History-tab" data-bs-toggle="tab" data-bs-target="#History-tab-pane" type="button" role="tab" aria-controls="History-tab-pane" aria-selected="false">History</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="logout-tab" data-bs-toggle="tab" data-bs-target="#logout-tab-pane" type="button" role="tab" aria-controls="logout-tab-pane" aria-selected="false">Log Out</button>
+  </li>
+  
+</ul>
+ <!-- nav bar  end -->
+<div class="tab-content" id="myTabContent">
+
+<!-- Dashboard -->
+  <div class="tab-pane fade show active" id="Dashboard-tab-pane" role="tabpanel" aria-labelledby="Dashboard-tab" tabindex="0">
+   <!-- boxes start -->
+          <div  class="container-fluid">
+         <div class="row ">
+
+         <div class="col-md-3 col-6 d-flex align-items-center ">
+               <div class="card shadow-5-strong  text-center mb-3"  id="bx1" >
+                <div class="card-body">
+                  <h3 class="card-title">Total Slots</h3>
+                  <p class="card-text">40</p>
+                </div>
+              </div>
+         </div>
+
+         <div class="col-md-3 col-6 d-flex align-items-center ">
+              <div class="card shadow-5-strong text-center mb-3"  id="bx1">
+                <div class="card-body">
+                  <h3 class="card-title">Booked Slots</h3>
+                  <p class="card-text">{{ booked }}</p>
+                </div>
+              </div>
+         </div>
+
+         <div class="col-md-3 col-6 d-flex align-items-center ">
+            <div class="card shadow-5-strong text-center mb-3" style="width: 13rem; margin-top: 70px;" id="bx2">
+              <div class="card-body">
+                <h4 class="card-title">Available Slots</h4>
+                <p class="card-text">{{available}}</p>
+              </div>
+            </div>
+         </div>
+
+         <div class="col-md-3 col-6 d-flex align-items-center" >
+            <div class="card shadow-5-strong text-center mb-3" style="width: 13rem; margin-top: 70px; "id="bx2" >
+              <div class="card-body">
+                <h3 class="card-title">revenue</h3>
+                <p class="card-text">{{revenue}}</p>
+              </div>
+            </div>
+         </div>
+
+       </div>
+      </div>
+    <!-- boxes end -->
+     <!-- Dashboard table start -->
+    <div class="tbl-title text-light">Parked Vehicle</div>
+<div class="tbl">
+    <table class="table table-striped table-bordered my-tbl ">
+  <thead>
+    <tr > 
+      <th  scope="col">Slot</th>
+      <th  scope="col">Vehicle Number</th>
+      <th  scope="col">Vehicle Type</th>
+      <th   scope="col">Entry Time</th>
+    </tr>
+  </thead>
+ 
+   <tbody>
+    {% for i in tasks %}
+    <tr>
+        <td>{{i.slot_no}}</td>
+        <td>{{i.VehicleNum}}</td>
+        <td>{{i.VehicleTyp}}</td>
+        <td> {{ (i.entry_time + timedelta(hours=5,minutes=30)).strftime("%d-%m-%Y %I:%M %p") if i.entry_time else "" }}</td>
+    </tr>
+    {% endfor %}  
+  </tbody>
+</table>
+</div>
+
+{%  with messages=get_flashed_messages(with_categories=true) %}
+    {%  if messages %}
+      {% for category,message in messages %}
+   <div class="alert alert-{{ category }} alert-dismissible fade show"> {{ message }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+   </div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+  </div>
+  <!-- Dashboard table ends -->
+<!-- vehicle entry form -->
+ <div class="card mx-4 mx-md-5 shadow-5-strong text-light tab-pane fade " id="Vehicle-Entry-tab-pane" role="tabpanel" aria-labelledby="Vehicle-Entry-tab" tabindex="0"
+      style=" margin-top: 100px;
+        backdrop-filter: blur(30px);     
+        border-radius: 20px;
+        background: transparent;
+        border-color: rgb(37, 94, 128);
+        ">
+    <div class="card-body py-5 px-md-5">
+
+<div class="row d-flex justify-content-center ">
+  <div class="col-lg-8">
+    <h2 class="fw-bold mb-5">Vehicle Entry Form</h2>
+    <form method="post" action="/dashboard">
+     <!-- vehicle number input -->
+       <div data-mdb-input-init class="form-outline mb-4">
+         <label for="exampleVehicleNumber" class="form-label" >Vehicle Number</label>
+         <input type="text" class="form-control" name="VehicleNum" required>
+        </div>
+
+       <!-- vehicle type input -->
+       <div data-mdb-input-init class="form-outline mb-4">
+      <label for="exampleVehicleType" class="form-label">Vehicle Type</label>
+    <select class="form-control" name="VehicleTyp" required >
+      <option value="">Select Vehicle Type</option>
+      <option value="Two Wheeler">Two Wheeler</option>
+      <option value="Three Wheeler">Three Wheeler</option>
+      <option value="Four Wheeler">Four Wheeler</option>
+      <option value="Heavy Vehicle">Heavy Vehicle</option>
+      <option value="Special Vehicle">Special Vehicle</option></select>
+        </div>
+         <br>
+   <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-dark btn-block mb-4"> Enter</button>
+      </form>
+      </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Vehicle exit form -->
+  <div class="card mx-4 mx-md-5 shadow-5-strong text-light tab-pane fade " id="Vehicle-Exit-tab-pane" role="tabpanel" aria-labelledby="Vehicle-Entry-tab" tabindex="0"
+      style=" margin-top: 100px;
+        backdrop-filter: blur(30px);    
+        border-radius: 20px;
+        background: transparent;
+        border-color: rgb(37, 94, 128);
+        ">
+    <div class="card-body py-5 px-md-5">
+
+<div class="row d-flex justify-content-center ">
+  <div class="col-lg-8">
+    <h2 class="fw-bold mb-5">Vehicle Exit Form</h2>
+    <form method="post" action="/vehicleExit">
+     <!-- vehicle num input -->
+       <div data-mdb-input-init class="form-outline mb-4">
+         <label for="exampleVehicleNumber" class="form-label" >Vehicle Number</label>
+         <input type="text" class="form-control" name="VehicleNum" required>
+        </div>
+
+       <!-- vehicle type input -->
+       <div data-mdb-input-init class="form-outline mb-4">
+      <label for="exampleVehicleType" class="form-label">Vehicle Type</label>
+    <select class="form-control" name="VehicleTyp" required >
+      <option value="">Select Vehicle Type</option>
+      <option value="Two Wheeler">Two Wheeler</option>
+      <option value="Three Wheeler">Three Wheeler</option>
+      <option value="Four Wheeler">Four Wheeler</option>
+      <option value="Heavy Vehicle">Heavy Vehicle</option>
+      <option value="Special Vehicle">Special Vehicle</option></select>
+        </div>
+         <br>
+   <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-dark btn-block mb-4">Exit</button>
+      </form>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <!--History  -->
+    <div class="tab-pane fade mt-5" id="History-tab-pane" role="tabpanel" aria-labelledby="History-tab" tabindex="0">
+     <div class="forms-title text-light"><h1>History-Tab</h1></div>
+      <div class="tbl">
+    <table class="table my-tbl table-striped table-bordered" >
+  <thead>
+    <tr>
+      <th scope="col">Slot</th>
+      <th scope="col">Vehicle Number</th>
+      <th scope="col">Vehicle Type</th>
+      <th scope="col">Entry Time</th>
+      <th scope="col">Exit Time</th> 
+      <th scope="col">Amount</th> 
+    </tr>
+  </thead>
+
+   <tbody>
+    {% for i in reports %}
+    <tr>
+        <td>{{i.slot_no}}</td>
+        <td>{{i.VehicleNum}}</td>
+        <td>{{i.VehicleTyp}}</td>
+            <td>
+      {{ (i.entry_time + timedelta(hours=5,minutes=30)).strftime("%d-%m-%Y %I:%M %p") if i.entry_time else "" }}
+    </td>
+        <td> {{ (i.exit_time + timedelta(hours=5,minutes=30)).strftime("%d-%m-%Y %I:%M %p") if i.exit_time else "" }}</td>
+        <td> {{i.amount}} </td>
+        <td> <a href="/delete/{{i.id}}" class="btn btn-dark btn-block ">Delete</a> </td>
+      </tr>
+    {% endfor %}  
+  </tbody>
+</table>
+</div>
+    </div>
+<!-- logout -->
+ <div class="card mx-4 mx-md-5 shadow-5-strong text-light tab-pane fade " id="logout-tab-pane" role="tabpanel" aria-labelledby="logout-tab" tabindex="0"
+      style=" margin-top: 100px;
+        backdrop-filter: blur(30px);  
+        border-radius: 20px;
+        background: transparent;
+        border-color: rgb(37, 94, 128);
+        ">
+    <div class="card-body py-5 px-md-5">
+
+<div class="row d-flex justify-content-center ">
+  <div class="col-lg-8" >
+    <h2 class="fw-bold mb-5">Do you want to logout ?</h2>
+   <a href="/logout" type="submit" class=" btn btn-dark btn-block mb-4">Log Out</a>
+      </div>
+      </div>
+    </div>
+  </div>
+  </div>
+<!-- logout end -->
+</div>
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+  </body>
+</html>
