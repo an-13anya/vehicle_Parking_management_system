@@ -1,4 +1,4 @@
-# vehicle_Parking_management_system
+# Vehicle_Parking_management_system
 
 # Project Overview
 This project is developed as a **Third Year Mini Project** as part of the Bachelor of Computer Applications (BCA) curriculum.
@@ -38,13 +38,16 @@ The **Vehicle Parking Management System** is a software application designed to 
   ![Home Page](Dashboard.png)
 
 * Vehicle Entry Page
-  ![Vehicle Entry](screenshots/entry.png)
+  ![Vehicle Entry](vh_entry.png)
 
 * Vehicle Exit Page
-  ![Vehicle Exit](screenshots/exit.png)
+  ![Vehicle Exit](vh_exit.png)
 
 * Parking Records Page
-  ![Records](screenshots/records.png)
+  ![Records](history.png)
+
+* DataBase
+  ![DataBase](db.png)
 
 
 ## 👩‍💻 Author
