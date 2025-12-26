@@ -13,7 +13,7 @@ The **Vehicle Parking Management System** is a software application designed to 
 * Simple and user-friendly interface
 
 
-#💻 Technologies Used
+# Technologies Used
 
 * Programming Language: Python
 * Framework: Flask 
@@ -22,7 +22,7 @@ The **Vehicle Parking Management System** is a software application designed to 
 * Tools: VS Code, XAMPP, GitHub
 
 
-# 🔄 Working of the System
+#  Working of the System
 
 1. Vehicle details are entered at the time of entry.
 2. A parking slot is assigned automatically or manually.
@@ -35,7 +35,7 @@ The **Vehicle Parking Management System** is a software application designed to 
 ## 🖼️ Screenshots
 
 * Home Page / Dashboard
-  ![Home Page](screenshots/Dashboard.png)
+  ![Home Page](Dashboard.png)
 
 * Vehicle Entry Page
   ![Vehicle Entry](screenshots/entry.png)
