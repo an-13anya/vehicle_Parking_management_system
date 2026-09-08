@@ -18,7 +18,7 @@ The **Vehicle Parking Management System** is a software application designed to 
 * Programming Language: Python
 * Framework: Flask 
 * Database: MySQL / SQLite
-* Frontend: HTML, CSS, JavaScript via bootstrap
+* Frontend: HTML, CSS, JavaScript ,bootstrap
 * Tools: VS Code, XAMPP, GitHub
 
 
@@ -53,5 +53,5 @@ The **Vehicle Parking Management System** is a software application designed to 
 ## 👩‍💻 Author
 
 **Ananya Singh**
-BCA Student, Allahabad University
+BCA Student, University of Allahabad 
 
